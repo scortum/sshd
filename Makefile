@@ -9,8 +9,16 @@ run:
 	docker run -d --name sshd-test \
         	   -v /etc/localtime:/etc/localtime:ro \
 	           -v /home/core/sshd/src/tmp:/tmp \
-                   -P  \
+                   -p 2222:22  \
         	   sshd
+
+bash:
+	docker run -it --rm \
+        	   -v /etc/localtime:/etc/localtime:ro \
+	           -v ~/sshd/src/tmp:/tmp \
+                   -p 2222:22  \
+        	   sshd bash
+
 
 stop:
 	-docker stop sshd-test
