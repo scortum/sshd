@@ -8,7 +8,7 @@ run:
         	   -v /etc/localtime:/etc/localtime:ro \
 	           -v /home/core/sshd/src/tmp:/tmp \
                    -P  \
-        	   mail bash
+        	   sshd bash
 
 .PHONY: build run
 

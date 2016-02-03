@@ -17,6 +17,10 @@ RUN apt-get install -y vim emacs irssi
 
 EXPOSE 22
 
-ADD src/run.sh /run.sh
-CMD "/run.sh"
+
+# add users by doing the following on a running container named cont
+# docker exec -v ~/credentials:credentials cont add-users.sh
+
+ADD src/add-users.sh /add-users.sh
+CMD ["/usr/sbin/sshd" "-D"]
     
