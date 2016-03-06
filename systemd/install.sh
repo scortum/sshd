@@ -14,7 +14,7 @@ EOF
 
 cat > /lib/systemd/system/${DOCKER_CONTAINER_NAME}.service << EOF
 [Unit]
-Description=Some description here...
+Description=Scortum SSHD
 Requires=docker.service
 After=docker.service
 
@@ -28,7 +28,7 @@ ExecStartPre=-/usr/bin/docker rm \${DOCKER_CONTAINER_NAME}
 ExecStartPre=/usr/bin/docker pull \${DOCKER_IMAGE}
 ExecStart=/usr/bin/docker run --name \${DOCKER_CONTAINER_NAME}      \
                               -p 2222:22                            \
-                              -v \${LOCAL_DIR}:/data                \
+                              -v \${LOCAL_DIR}/home:/home           \
                               -v /etc/localtime:/etc/localtime:ro   \
                               \${DOCKER_IMAGE}
 ExecStop=/usr/bin/docker stop --time=10 \${DOCKER_CONTAINER_NAME} 
