@@ -1,11 +1,23 @@
 #!/bin/bash
 
-cat credentials | while read in; 
+cd /home
+ls -dln * | awk '{print $3":"$4":"$9}' | while read in; 
 do
-  user=$(echo "$in" | cut -f 1 -d ":")
-  echo adduser $user 
-  adduser $user
-  echo "$in" | chpasswd
+  uid=$(echo "$in" | cut -f 1 -d ":")
+  gid=$(echo "$in" | cut -f 2 -d ":")
+  user=$(echo "$in" | cut -f 3 -d ":")
+
+  id $user
+  if [ $? -ne 0 ]; then
+    echo "add user $user ($uid/$gid)"
+    echo adduser --shell /bin/bash  \
+            --uid $uid  \
+            --gid $gid  \
+            --no-create-home  \
+            --disabled-password  \
+            --gecos "" \
+            $user
+  fi
 done
 
 
