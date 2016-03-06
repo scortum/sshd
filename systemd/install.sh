@@ -22,13 +22,14 @@ After=docker.service
 Restart=on-failure
 RestartSec=10
 TimeoutStartSec=0
-EnvironmentFile=-/etc/default/${DOCKER_CONTAINER_NAME}
+EnvironmentFile=/etc/default/${DOCKER_CONTAINER_NAME}
 ExecStartPre=-/usr/bin/docker kill \${DOCKER_CONTAINER_NAME}
 ExecStartPre=-/usr/bin/docker rm \${DOCKER_CONTAINER_NAME}
 ExecStartPre=/usr/bin/docker pull \${DOCKER_IMAGE}
 ExecStart=/usr/bin/docker run --name \${DOCKER_CONTAINER_NAME}      \
                               -p 2222:22                            \
                               -v \${LOCAL_DIR}/home:/home           \
+                              -v \${LOCAL_DIR}/etc/ssh:/etc/ssh     \
                               -v /etc/localtime:/etc/localtime:ro   \
                               \${DOCKER_IMAGE}
 ExecStop=/usr/bin/docker stop --time=10 \${DOCKER_CONTAINER_NAME} 
