@@ -10,7 +10,7 @@ do
   id $user
   if [ $? -ne 0 ]; then
     echo "add user $user ($uid/$gid)"
-    echo adduser --shell /bin/bash  \
+    adduser --shell /bin/bash  \
             --uid $uid  \
             --gid $gid  \
             --no-create-home  \
