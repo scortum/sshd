@@ -9,6 +9,7 @@ cat > /etc/default/${DOCKER_CONTAINER_NAME} << EOF
 DOCKER_IMAGE=${IMAGE_NAME}:${VERSION}
 DOCKER_CONTAINER_NAME=${DOCKER_CONTAINER_NAME}
 LOCAL_DIR=/data/${DOCKER_CONTAINER_NAME}
+DOCKER_HOSTNAME=docker.phon.name
 EOF
 
 
@@ -27,6 +28,7 @@ ExecStartPre=-/usr/bin/docker kill \${DOCKER_CONTAINER_NAME}
 ExecStartPre=-/usr/bin/docker rm \${DOCKER_CONTAINER_NAME}
 ExecStartPre=/usr/bin/docker pull \${DOCKER_IMAGE}
 ExecStart=/usr/bin/docker run --name \${DOCKER_CONTAINER_NAME}      \
+                              -h \${DOCKER_HOSTNAME}                \
                               -p 2222:22                            \
                               -v \${LOCAL_DIR}/home:/home           \
                               -v \${LOCAL_DIR}/etc/ssh:/etc/ssh     \

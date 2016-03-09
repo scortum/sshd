@@ -2,5 +2,5 @@
 
 /add-users.sh
 
-/usr/sbin/sshd -D -d -e
+exec /usr/sbin/sshd -D -d -e
 
