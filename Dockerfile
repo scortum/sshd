@@ -18,6 +18,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 
 ADD src/add-users.sh                /root/add-users.sh
 ADD src/create-new-host-keys.sh     /root/create-new-host-keys.sh
+ADD src/cleanup.sh                  /root/cleanup.sh
 ADD src/run.sh                      /root/run.sh
 
 EXPOSE 22
