@@ -56,6 +56,17 @@ clean() {
   [[ ${DANGLING_IMAGES} ]] && docker rmi ${DANGLING_IMAGES}
 }
 
+
+security-check() {
+  # https://github.com/docker/docker-bench-security
+  docker run -it --net host --pid host --cap-add audit_control \
+    -v /var/lib:/var/lib \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/lib/systemd:/usr/lib/systemd \
+    -v /etc:/etc --label docker_bench_security \
+    docker/docker-bench-security
+}
+
 help() {
   declare -F
 }

@@ -29,7 +29,7 @@ ExecStartPre=-/usr/bin/docker rm \${DOCKER_CONTAINER_NAME}
 ExecStartPre=/usr/bin/docker pull \${DOCKER_IMAGE}
 ExecStart=/usr/bin/docker run --name \${DOCKER_CONTAINER_NAME}      \
                               -h \${DOCKER_HOSTNAME}                \
-                              -p 2222:22                            \
+                              -p 22:22                              \
                               -v \${LOCAL_DIR}/home:/home           \
                               -v \${LOCAL_DIR}/etc/ssh:/etc/ssh     \
                               -v /etc/localtime:/etc/localtime:ro   \
