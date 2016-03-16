@@ -50,10 +50,10 @@ bash() {
 
 clean() {
   # http://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/
-  local STOPPED_CONTAINERS=$(docker ps -a -q)
-  [[ ${STOPPED_CONTAINERS} ]] && docker rm ${STOPPED_CONTAINERS}
   local DANGLING_IMAGES=$(docker images -f "dangling=true" -q)
   [[ ${DANGLING_IMAGES} ]] && docker rmi ${DANGLING_IMAGES}
+  local STOPPED_CONTAINERS=$(docker ps -a -q)
+  [[ ${STOPPED_CONTAINERS} ]] && docker rm ${STOPPED_CONTAINERS}
 }
 
 
