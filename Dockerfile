@@ -20,10 +20,11 @@ RUN locale-gen de_DE.UTF-8 \
  && locale-gen en_US.UTF-8 \
  && dpkg-reconfigure locales
 
-ADD src/add-users.sh                /root/add-users.sh
-ADD src/create-new-host-keys.sh     /root/create-new-host-keys.sh
-ADD src/cleanup.sh                  /root/cleanup.sh
-ADD src/run.sh                      /root/run.sh
+ADD src/add-users.sh                \
+    src/create-new-host-keys.sh     \
+    src/cleanup.sh                  \
+    src/run.sh                      \
+    /root/
 
 EXPOSE 22
 CMD "/root/run.sh"
