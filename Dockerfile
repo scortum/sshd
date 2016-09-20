@@ -3,20 +3,22 @@ MAINTAINER Marcus & Alex
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
-    && apt-get -y upgrade \
-    && rm -rf /var/lib/apt/lists/*
+ && apt-get -y upgrade \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update \
-    && apt-get install -y  \
-                          vim            \
-                          emacs          \
-                          irssi          \
-                          screen         \
-                          rtorrent       \
-                          curl           \
-                          w3m            \
-                          openssh-server \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update                           \
+ && apt-get install -y  -q                   \
+                    --no-install-recommends  \
+                    vim                      \
+                    emacs                    \
+                    irssi                    \
+                    screen                   \
+                    rtorrent                 \
+                    curl                     \
+                    w3m                      \
+                    openssh-server           \
+ && apt-get clean                            \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
 
@@ -29,11 +31,7 @@ RUN locale-gen de_DE.UTF-8 \
  && locale-gen en_US.UTF-8 \
  && dpkg-reconfigure locales
 
-ADD src/add-users.sh                \
-    src/create-new-host-keys.sh     \
-    src/cleanup.sh                  \
-    src/run.sh                      \
-    /root/
+ADD src/*.sh  /root/
 
 EXPOSE 22
 CMD "/root/run.sh"
