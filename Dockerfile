@@ -7,14 +7,23 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
-    && apt-get install -y vim emacs irssi screen rtorrent curl w3m \
-    && apt-get install -y openssh-server \
+    && apt-get install -y  \
+                          vim            \
+                          emacs          \
+                          irssi          \
+                          screen         \
+                          rtorrent       \
+                          curl           \
+                          w3m            \
+                          openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
 
 # SSH login fix. Otherwise user is kicked off after login
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+RUN BEFORE='session\s*required\s*pam_loginuid.so'    \
+ && AFTER='session optional pam_loginuid.so'         \
+ && sed "s@${BEFORE}@${AFTER}@g" -i /etc/pam.d/sshd
 
 RUN locale-gen de_DE.UTF-8 \ 
  && locale-gen en_US.UTF-8 \
