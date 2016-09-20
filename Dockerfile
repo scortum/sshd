@@ -16,6 +16,10 @@ RUN mkdir /var/run/sshd
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
+RUN locale-gen de_DE.UTF-8 \ 
+ && locale-gen en_US.UTF-8 \
+ && dpkg-reconfigure locales
+
 ADD src/add-users.sh                /root/add-users.sh
 ADD src/create-new-host-keys.sh     /root/create-new-host-keys.sh
 ADD src/cleanup.sh                  /root/cleanup.sh
