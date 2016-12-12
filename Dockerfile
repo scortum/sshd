@@ -13,6 +13,7 @@ RUN apt-get update                           \
                     emacs                    \
                     irssi                    \
                     screen                   \
+                    tmux                     \
                     rtorrent                 \
                     curl                     \
                     w3m                      \
