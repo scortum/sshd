@@ -35,5 +35,5 @@ RUN locale-gen de_DE.UTF-8 \
 ADD src/*.sh  /root/
 
 EXPOSE 22
-CMD "/root/run.sh"
+CMD ["/root/run.sh"]
     
