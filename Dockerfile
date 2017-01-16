@@ -33,6 +33,7 @@ RUN locale-gen de_DE.UTF-8 \
 
 ADD src/*.sh  /root/
 
-EXPOSE 22
+EXPOSE 22 5190 6667 6668 6669 9002
+
 CMD "/root/run.sh"
     

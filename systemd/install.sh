@@ -30,6 +30,11 @@ ExecStartPre=/usr/bin/docker pull \${DOCKER_IMAGE}
 ExecStart=/usr/bin/docker run --name \${DOCKER_CONTAINER_NAME}      \
                               -h \${DOCKER_HOSTNAME}                \
                               -p 22:22                              \
+                              -p 5190:5190                          \
+                              -p 6667:6667                          \
+                              -p 6668:6668                          \
+                              -p 6668:6668                          \
+                              -p 9002:9002                          \
                               -v \${LOCAL_DIR}/home:/home           \
                               -v \${LOCAL_DIR}/etc/ssh:/etc/ssh     \
                               -v /etc/localtime:/etc/localtime:ro   \
