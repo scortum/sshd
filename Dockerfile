@@ -13,6 +13,7 @@ RUN apt-get update                           \
                     emacs                    \
                     irssi                    \
                     screen                   \
+                    tmux                     \
                     rtorrent                 \
                     curl                     \
                     w3m                      \
@@ -35,5 +36,5 @@ ADD src/*.sh  /root/
 
 EXPOSE 22 5190 6667 6668 6669 9002
 
-CMD "/root/run.sh"
+CMD ["/root/run.sh"]
     
