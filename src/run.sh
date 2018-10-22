@@ -2,5 +2,6 @@
 
 /root/cleanup.sh
 /root/add-users.sh
-exec /usr/sbin/sshd -D
 
+echo "Starting sshd..."
+exec /usr/sbin/sshd -D

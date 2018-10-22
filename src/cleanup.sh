@@ -1,5 +1,3 @@
-#!/bin/sh -x
+#!/bin/sh -x   
 
-rm /.dockerenv
-rm /.dockerinit
-
+rm -rf /.dockerenv
