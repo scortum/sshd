@@ -1,7 +1,22 @@
-version: "2"
+version: "3.1"
 
 services:
   sshd:
     build: .
-    image: sshd
+    image: scortum/sshd
 
+    container_name: sshd
+    restart: always
+
+    ports:
+      - "2222:22"
+      - "5190:5190"
+      - "6667:6667"
+      - "6668:6668"
+      - "6669:6669"
+      - "9002:9002"
+                 
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/data/ssh/home:/home"
+#      - "/data/ssh/etc/ssh:/etc/ssh"

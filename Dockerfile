@@ -1,5 +1,5 @@
-FROM ubuntu:14.04
-MAINTAINER Marcus & Alex
+FROM ubuntu:18.04
+LABEL maintainers="Marcus & Alex"
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
@@ -9,15 +9,16 @@ RUN apt-get update \
 RUN apt-get update                           \
  && apt-get install -y  -q                   \
                     --no-install-recommends  \
-                    vim                      \
+                    curl                     \
                     emacs                    \
                     irssi                    \
-                    screen                   \
-                    tmux                     \
-                    rtorrent                 \
-                    curl                     \
-                    w3m                      \
+                    locales                  \
                     openssh-server           \
+                    screen                   \
+                    rtorrent                 \
+                    tmux                     \
+                    vim                      \
+                    w3m                      \
  && apt-get clean                            \
  && rm -rf /var/lib/apt/lists/*
 
