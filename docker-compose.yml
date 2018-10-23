@@ -21,8 +21,13 @@ services:
       - "/data/ssh/home:/home"
 #      - "/data/ssh/etc/ssh:/etc/ssh"
 
+    environment:
+      SSH_KEY: 'key-for-root-1;key-for-root-2'
+      IMPORT_GITHUB_PUB_KEYS: user1,user2,user3
+      
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
         max-file: "10"
+
