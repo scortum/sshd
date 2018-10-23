@@ -14,12 +14,15 @@ RUN apt-get update                           \
                     irssi                    \
                     locales                  \
                     openssh-server           \
+                    python3                  \
+                    python3-pip              \
                     screen                   \
                     rtorrent                 \
                     tmux                     \
                     vim                      \
                     w3m                      \
  && apt-get clean                            \
+ && pip3 install sh                          \
  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
@@ -33,7 +36,7 @@ RUN locale-gen de_DE.UTF-8 \
  && locale-gen en_US.UTF-8 \
  && dpkg-reconfigure locales
 
-ADD src/*.sh  /root/
+ADD src/*  /root/
 
 EXPOSE 22 5190 6667 6668 6669 9002
 
