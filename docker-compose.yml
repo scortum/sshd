@@ -20,3 +20,9 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
       - "/data/ssh/home:/home"
 #      - "/data/ssh/etc/ssh:/etc/ssh"
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
