@@ -10,6 +10,19 @@ Container providing a ssh service. Not alway a good idea ;-)
 
 
 
+## Code
+
+
+```bash
+$ docker run -d -P --name test scortum/sshd
+$ docker port test 22
+0.0.0.0:49154
+
+$ ssh root@localhost -p 49154
+root@test $
+```
+
+
 ## Links
 
 Inspired by:
@@ -28,15 +41,4 @@ Others:
 
 
 * or pass the key via first parameter like [here](https://github.com/robvanmieghem/docker-sshd/blob/master/entry.sh)
-
-
-
-## Code
-
-    $ docker run -d -P --name test scortum/sshd
-    $ docker port test 22
-    0.0.0.0:49154
-
-    $ ssh root@localhost -p 49154
-    root@test $
 

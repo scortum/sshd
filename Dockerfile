@@ -55,10 +55,20 @@ RUN locale-gen de_DE.UTF-8 \
  && dpkg-reconfigure locales
 
 ADD src/*  /root/
+
+  
+# CMD ["/entrypoint.sh", "-fg"]
+# ENTRYPOINT ["/tini", "--"]
+
+ARG TINI_VERSION=v0.18.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+
+
 COPY --from=apky-ubik /app/ubik /root/
 
 
 EXPOSE 22 5190 6667 6668 6669 9002
 
 CMD ["/root/run.sh"]
-    
+  
