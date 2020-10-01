@@ -1,6 +1,6 @@
 FROM apky/ubik AS apky-ubik
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 LABEL maintainers="Marcus & Alex"
 
 ENV TERM xterm
