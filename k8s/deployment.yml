@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sshd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sshd
+  template:
+    metadata:
+      labels:
+        app: sshd
+    spec:
+      terminationGracePeriodSeconds: 10
+
+      containers:
+      - name: sshd
+        image: scortum/sshd
+        
+        ports:
+        - containerPort: 22
+
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+
+        - name: home
+          mountPath: /home
+
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
+
+      - name: home
+        hostPath:
+          path: /data/ssh/home
+
+  
